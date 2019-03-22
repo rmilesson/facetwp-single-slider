@@ -1,0 +1,1 @@
+# FacetWP - Single Handle Slider
