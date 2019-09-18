@@ -146,15 +146,15 @@ class FacetWP_Facet_Single_Slider extends FacetWP_Facet {
                     <span class="icon-question">?</span>
                     <div class="facetwp-tooltip-content"><?php _e( 'The comparison method', 'fwp' ); ?></div>
                 </div>
-                <div>
-                    <select class="facet-compare">
-                        <option value="<">Lower than</option>
-                        <option value="<=">Lower than or equal</option>
-                        <option value="=">Equal</option>
-                        <option value=">=">Greater than or equal</option>
-                        <option value=">">Greater than</option>
-                    </select>
-                </div>
+            </div>
+            <div>
+                <select class="facet-compare">
+                    <option value="<">Lower than</option>
+                    <option value="<=">Lower than or equal to</option>
+                    <option value="=">Equal to</option>
+                    <option value=">=">Greater than or equal to</option>
+                    <option value=">">Greater than</option>
+                </select>
             </div>
         </div>
         <div class="facetwp-row">
