@@ -80,7 +80,7 @@ class FacetWP_Facet_Single_Slider extends FacetWP_Facet {
             ],
             'decimal_separator'   => FWP()->helper->get_setting( 'decimal_separator' ),
             'thousands_separator' => FWP()->helper->get_setting( 'thousands_separator' ),
-            'start'               => [ $row->max ],
+            'start'               => [ $row->min ],
             'format'              => $facet['format'],
             'prefix'              => $facet['prefix'],
             'suffix'              => $facet['suffix'],
