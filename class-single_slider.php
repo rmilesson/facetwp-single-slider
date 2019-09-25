@@ -53,10 +53,9 @@ class FacetWP_Facet_Single_Slider extends FacetWP_Facet {
     function settings_js( $params ) {
         global $wpdb;
 
-        $facet          = $params['facet'];
-        $where_clause   = $params['where_clause'];
-        $selected_value = $params['selected_values'];
-        $selected_value = is_array( $selected_value ) ? $selected_value[0] : $selected_value;
+        $facet           = $params['facet'];
+        $where_clause    = $params['where_clause'];
+        $selected_values = $params['selected_values'];
 
         // Set default slider values
         $defaults = [
@@ -69,22 +68,24 @@ class FacetWP_Facet_Single_Slider extends FacetWP_Facet {
         $facet = array_merge( $defaults, $facet );
 
         $sql = "
-        SELECT MIN(facet_value + 0) AS `min`, MAX(facet_display_value + 0) AS `max` FROM {$wpdb->prefix}facetwp_index
+        SELECT MIN(facet_value + 0) AS `min`, MAX(facet_value + 0) AS `max` FROM {$wpdb->prefix}facetwp_index
         WHERE facet_name = '{$facet['name']}' AND facet_display_value != '' $where_clause";
         $row = $wpdb->get_row( $sql );
 
+        $selected_value = isset( $selected_values[0] ) ? $selected_values[0] : $row->min;
+
         return [
             'range'               => [
-                'min' => (float) $selected_value,
+                'min' => (float) $row->min,
                 'max' => (float) $row->max,
             ],
             'decimal_separator'   => FWP()->helper->get_setting( 'decimal_separator' ),
             'thousands_separator' => FWP()->helper->get_setting( 'thousands_separator' ),
-            'start'               => [ $row->min ],
+            'start'               => [ $selected_value ],
             'format'              => $facet['format'],
             'prefix'              => $facet['prefix'],
             'suffix'              => $facet['suffix'],
-            'step'                => $facet['step']
+            'step'                => $facet['step'],
         ];
     }
 
